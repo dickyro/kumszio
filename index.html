@@ -75,20 +75,24 @@
     // رابط Pastebin الذي يحتوي على روابط الدعوة المختصرة
     const pastebinUrl = "https://pastebin.com/raw/YA4fAtA3";
 
-    // جلب رابط الدعوة من Pastebin مباشرة
-    fetch(pastebinUrl)
-      .then(res => res.text())
-      .then(data => {
-        const links = data.split("\n").map(x => x.trim()).filter(x => x);
+    // دالة لجلب الرابط من Pastebin باستخدام async/await
+    async function getLink() {
+      try {
+        const response = await fetch(pastebinUrl);
+        const data = await response.text();
+        const links = data.split("\n").map(x => x.trim()).filter(x => x); // إزالة الأسطر الفارغة
         const randomLink = randomFrom(links);
         setTimeout(() => {
           window.location.href = randomLink;
         }, Math.random() * (7000 - 3000) + 3000); // من 3 إلى 7 ثواني
-      })
-      .catch(err => {
-        console.error("Error loading links:", err);
+      } catch (error) {
+        console.error("Error loading links:", error);
         consoleDiv.textContent = "Failed to load secure links.";
-      });
+      }
+    }
+
+    // استدعاء الدالة
+    getLink();
   </script>
 </body>
 </html>
