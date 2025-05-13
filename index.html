@@ -62,7 +62,7 @@
       };
     }
 
-    // تعديل العنوان والمظهر
+    // تغيير المظهر
     document.title = randomFrom(titles);
     const consoleDiv = document.getElementById("console");
     consoleDiv.textContent = randomFrom(messages);
@@ -75,11 +75,11 @@
     // رابط Pastebin الذي يحتوي على روابط الدعوة المختصرة
     const pastebinUrl = "https://pastebin.com/raw/YA4fAtA3";
 
-    // تحميل روابط الاختصار من Pastebin
+    // جلب رابط الدعوة من Pastebin مباشرة
     fetch(pastebinUrl)
       .then(res => res.text())
-      .then(text => {
-        const links = text.split("\n").map(x => x.trim()).filter(x => x);
+      .then(data => {
+        const links = data.split("\n").map(x => x.trim()).filter(x => x);
         const randomLink = randomFrom(links);
         setTimeout(() => {
           window.location.href = randomLink;
